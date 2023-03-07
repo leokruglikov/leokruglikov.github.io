@@ -1,7 +1,7 @@
 ---
 title: "Cuda Notes"
 date: "2023-02-22T22:33:44+01:00"
-draft: true
+draft: false
 author : "Leo Kruglikov"
 cover: "img/cuda_code.jpg"
 description : "Self-made notes on programming paradigm with CUDA"
