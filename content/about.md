@@ -21,5 +21,5 @@ fields.
 
 #### My CV, including courses, skills and experience
 
-{{<embed-pdf url="cv_leo.pdf" hideLoader="true" hidePaginator="true">}}
+{{<embed-pdf url="cv_leo_blue.pdf" hideLoader="true" hidePaginator="true">}}
 
