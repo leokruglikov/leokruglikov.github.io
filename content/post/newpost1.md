@@ -1,7 +1,7 @@
 ---
 title: "Basics of basic quantum algorithms"
 date: "2023-02-21T22:33:44+01:00"
-draft: true
+draft: false
 tags: ["tutorial"]
 ---
 ### Notes on basic quantum algorithms. A physics approach
