@@ -16,9 +16,9 @@
     <meta name="description" content="{{ $summary }}">
   {{ end }}
 
-  <link rel="apple-touch-icon" sizes="180x180" href="{{ "apple-touch-icon.png" | absURL }}">
-  <link rel="icon" type="image/png" sizes="32x32" href="{{ "favicon-32x32.png" | absURL }}"> 
-  <link rel="icon" type="image/png" sizes="16x16" href="{{ "favicon-16x16.png" | absURL }}"> 
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ "rocket-svgrepo-com.svg" | absURL }}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ "rocket-svgrepo-com.svg" | absURL }}"> 
+  <link rel="icon" type="image/png" sizes="16x16" href="{{ "rocket-svgrepo-com.svg" | absURL }}"> 
   <link rel="manifest" href="{{ "site.webmanifest" | absURL }}"> 
   <link rel="mask-icon" href="{{ "safari-pinned-tab.svg" | absURL }}" color="#000000"> 
   <meta name="msapplication-TileColor" content="#ffffff">
@@ -65,3 +65,4 @@
   {{ end }}
   <title>{{ $title }}</title>
 </head>
+{{ if .Params.katex }}{{ partial "katex.html" . }}{{ end }}

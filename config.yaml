@@ -1,7 +1,7 @@
 baseURL: "https://leokruglikov.github.io"
 languageCode: en-us
 defaultContentLanguage: en
-title: Cupper
+title: Leo's blog
 theme: cupper-hugo-theme
 googleAnalytics: UA-123456789-1
 disqusShortname: yourdiscussshortname

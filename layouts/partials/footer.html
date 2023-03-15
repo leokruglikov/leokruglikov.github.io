@@ -8,7 +8,9 @@
       <span aria-hidden="true"></span>
     </label>
   </div>
+  {{if .Params.katex}}{{partial "katex.html" . }}{{ end }}
   {{ with .Site.Params.footer }}
     {{ . | markdownify }}
   {{ end }}
 </footer>
+

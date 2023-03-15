@@ -9,4 +9,4 @@ Here, you'll find few of my notes concerning different topics such as physics an
 The rest of notes and previous projects can be found on my [Github](https://github.com/leokruglikov).
 
 Feel free to browse through different topics and follow me on [Github](https://github.com/leokruglikov).
-
+![](/images/Wallpaper-Minimalism-Ultra-Wide-Sunset-Retro-Style-Mou21.jpg)
