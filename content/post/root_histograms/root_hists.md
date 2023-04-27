@@ -1,5 +1,5 @@
 ---
-title: "ROOT histograms & Poisson distribution"
+title: "ROOT histograms & Poisson distribution. Validity of emission distribution with chi2."
 date: "2023-02-21T22:33:44+01:00"
 draft: false
 tags: ["tutorial", "physics"]
@@ -16,7 +16,7 @@ a sample of Cesium 137. It is radioactive, emitting photons and electrons, and i
 From this fact, it is wise to suppose that the rate, at which the radioactive products are emitted con be considered constant within the 
 timeframe of the conducted experiment.
 
-The experiment consists of a radioactive source (Cesium 137) and a Photo-detector. The data to be obtained are the number of collision per certain time interval.
+The experiment consists of a radioactive source (Cesium 137) and a Photo-detector. The data to be obtained are the number of collision per certain time interval $int_i$.
 That is, some observation time $T$ will be taken and divided into a time interval (3 types of this time 
 time intervals - t=\{1, 10, 100\}, [ms]). The goal is to measure the number of emitted photons per one time interval t during this long observation time T. 
 It is clear that in average, the number of emitted photons $\gamma$ will be greater for the time interval t=100ms than t=1ms.
@@ -176,11 +176,11 @@ reason. We can then suppose that this is due to the fact that the function invol
 The possible solution to this problem can be for example normalizing the bins and shifting them to zero. Normalizing the bins is indeed a good idea, 
 to limit the value of $A$ to around $1$. For the problem of evaluating for greater x's, this would probably be the solution for the data of 10ms, but 
 not for the 100ms. Indeed, we see that the range in x's (range$\equiv$min$-$max) in the 1ms is around $30$. For the 10ms data, the range is 
-around 80 and for 100ms, it is around 250. This means that even when shifted, our complex `Gamma(x)` values will be evaluated at great x's of 
-order of `x\approx 150`. Therefore, this is not a great solution, especially if there are greater dataset (e.g. potentially 1000ms).
+around 80 and for 100ms, it is around 250. This means that even when shifted, our complex $\Gamma(x)$ values will be evaluated at great x's of 
+order of $x\approx 150$. Therefore, this is not a great solution, especially if there are greater dataset (e.g. potentially 1000ms).
 
 Another solution (the one used to fit here) is the result known as the **Stirling approximation**. What this theorem says is that 
-the factorial (thus the \Gamma(x) function, which is the equivalent of a factorial for real numbers) can be approximatied as follows:
+the factorial (thus the $\Gamma(x)$ function, which is the equivalent of a factorial for real numbers) can be approximatied as follows:
 $$ x!=\Gamma(x+1) \sim \sqrt{2\pi x}\biggl( \dfrac{x}{e} \biggr)^x$$
 
 We can further develop this expression for the Poisson distribution:
@@ -199,6 +199,8 @@ shows that this method is a very good approximation.
 |![](/images/root_with_fit_second.jpg)|![](/images/root_with_fit_third.jpg)|
 |:--:|:--:| 
 | *Histogram for the 10ms with fit and shown parameters* | *Histogram for the 100ms with fit and shown parameters*|
+
+### Validity of the fit 
 
 
 
