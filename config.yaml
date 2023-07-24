@@ -56,6 +56,9 @@ menu:
     - name: About
       url: /about/
       weight: 4
+    - name: Misc 
+      url: /misc/
+      weight: 5
 
 markup:
   defaultMarkdownHandler: goldmark
@@ -76,14 +79,15 @@ markup:
       unsafe: true
       xHTML: false
   highlight:
-    codeFences: false
+    codeFences: true
+    guessSyntax: true
     hl_Lines: ""
     lineNoStart: 1
     lineNos: false
     lineNumbersInTable: true
-    noClasses: true
-    style: monokai
+    noClasses: false
     tabWidth: 4
+    style: monokai
   tableOfContents:
     endLevel: 6
     startLevel: 2

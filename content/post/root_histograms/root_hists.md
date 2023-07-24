@@ -35,7 +35,7 @@ $$ f(n) = A\dfrac{e^{-\lambda}\lambda^{n}}{n!}$$
 We will use the ROOT library to process the number of events recorded in this simple experiment, as done in CERN. We will write a full program (i.e. not a ROOT script) and compile it with `g++`.
 
 We will start with reading the data 
-```C++
+```c++
 #include <fstream>
 #include <vector>
 #include <string>
@@ -54,9 +54,8 @@ std::vector<std::vector<double> read_data(){
   return data;
 }
 ```
-
 Then, we will start to create histograms: 
-```C++
+```cpp
 #include "TH1.h"
 #include "TF1.h"
 //function returning a vector (will be of size 3) of pointers to ROOT histograms

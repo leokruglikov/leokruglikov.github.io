@@ -23,7 +23,6 @@
   <link rel="mask-icon" href="{{ "safari-pinned-tab.svg" | absURL }}" color="#000000"> 
   <meta name="msapplication-TileColor" content="#ffffff">
   <meta name="theme-color" content="#ffffff">
-
   <style>
     body {
       visibility: hidden;
@@ -50,10 +49,12 @@
   </style>
 
   <link rel="stylesheet" href="{{ "css/prism.css" | relURL }}" media="none" onload="this.media='all';">
+  <link rel="stylesheet" href="{{ "css/highlight.css" }}" media="none" onload="this.media='all';">
 
   {{ $templateStyles := resources.Get "css/template-styles.css" }}
   {{ $styles := $templateStyles | resources.ExecuteAsTemplate "css/styles.css" . }}
   <link rel="stylesheet" type="text/css" href="{{ $styles.RelPermalink }}">
+  <link rel="stylesheet" href="{{ "css/highlight.css" }}" media="none" onload="this.media='all';">
 
   {{ range .Site.Params.customCss }}
     <link rel="stylesheet" href="{{ . | relURL }}">
