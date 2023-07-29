@@ -817,7 +817,152 @@ $$
 \equiv p
 $$
 
+If using the formulae for $b_a$ - we will find out different things - instead of $\Gamma = \Gamma_1\oplus \Gamma_2$
+we find $\Gamma = 2\Gamma_1\oplus \Gamma_2$. This is due to the 
+fact that in the second case, we've implicitly converted the problem into 3 dimensions.
+We should also mention the meaning of the 4th column in the character table of the $C_s$ group.
+That is, the meaning of those "function basis" and "rotations". One should read them as follows:
+_the $\Gamma_i$ transforms as \<the function in question\>._
+So, the $\Gamma_2$ transforms as $z$, which is very obvious since the $\Gamma_2$ flips the sign 
+of the $z$; also, the $\Gamma_2$ transforms as $R_x$, $R_y$, since flipping the sign 
+would do essentially the same as rotating by $\pi$ over the $x$ or $y$ axis.
+Similar reasonings can be applied for $\Gamma_1$.
+So what to do, once the multiplicities have been found? \
+Once the multiplicities have been found, we want to finally find the common eigenbasis 
+for the obtained representations $\Gamma = \bigoplus_{a,x} \Gamma_{a,x}$ and the 
+Hamiltonian, which is our final goal. This is done through projectors. 
+This is not very complex, but relatively computationally expensive. 
+We will thus not discuss it there, but only the idea:
 
+So the idea is to find the set of eigenvectors that will span every irreducible representation.
+For that, one should construct the projector operators for each representations $\hat{\Pi}$, and 
+find the eigenbasis for each of them. The number of the eigenvectors, serving as the basis will be 
+equal to the degeneracies of the computed irreducible representations, that we computed.
+
+### The D3v group
+
+Now, we can proceed with the next example and the related problem. This problem 
+comes actually from one of my previous year's exam - on representation group theory.
+The statement of the problem is as follows:
+> We consider a molecule of 3 identical atoms disposed on a equilateral triangle
+> in 3D space. The symmetry group of an equilateral triangle in 3D 
+> is the $D_{3v}$. We consider the $\hat{z}$ direction to be perpendicular 
+> to the triangle plane.
+> The character table of the $D_{3v}$ group is given below. The group 
+> consists of the identity operation $E$, two rotations around the $\hat{z}$ 
+> axis $C_2$ (as in the $C_{3v}$ group). Three rotations around the 3 possible 
+> bissectrices from each vertex $C_3$. One reflection (mirror) operation 
+> along the plane, which is parallel to the plane of the triangle.
+> Then two improper rotations that we denote $S_3$, which are given 
+> by the composition of $C_3\circ \sigma_h$. Finally, three reflections 
+> over the 3 plans along the bissectrices. Every atom 
+> has 3 degrees of freedom and can move in 3D. \
+> The task is to compute the characters of the 
+> representation $\Gamma$, find the decomposition to determine 
+> the potential degeneracies.
+
+|![](/images/d3vgroup.png)|
+|:--:|
+
+
+Okay, let's start by providing the character table of the $D_{3v}$
+group:
+$$
+\def\arraystretch{1.5} \begin{array}{|c|c|c|c|c|c|c|c|c|}
+\hline
+    \chi_{D_{3v}} & E & 2C_3 & 3C_2 & \sigma_h & 2S_3 & 3\sigma_h & &\\\\ 
+   \hline
+   \Gamma_1 & 1 & 1 & 1 & 1 & 1 & 1 & &  x^2+y^2, z^2\\\\
+   \hline
+   \Gamma_2 & 1 & 1 & -1& 1 & 1 & -1& R_z & \\\\
+   \hline
+   \Gamma_3 & 2 &-1 & 0 & 2 &-1 & 0& (x,y) & (x^2-y^2, xy) \\\\
+   \hline
+   \Gamma_4 & 1 & 1 &-1 &-1 &-1 & 1& & \\\\
+   \hline
+   \Gamma_5 & 1 & 1&-1  &-1 & -1& 1& z & \\\\
+   \hline
+   \Gamma_6 & 2 &-1& 0 & -2 & 1 & 0& (R_x, R_y) & (xz, yz) \\\\
+   \hline
+\end{array}
+$$
+
+Okay, we may ask ourselves a question - what is the difference 
+between the rotation around one of the bissectrice $C_3$ and 
+the reflection operations $\sigma_h$? Indeed, 
+when performing the $C_2$ and $\sigma_v$ operations, 
+the positions of the atoms are the same, as shown 
+on the image:
+
+|![](/images/c2_vs_sigv_nodiff.png)|
+|:--:|
+
+However, they do differ and we can illustrate it by attaching a 
+local coordinate system to each of the atoms.
+
+|![](/images/c2_vs_sigv_diff.png)|
+|:--:|
+
+Here, we see the difference - the $\sigma_v$ simply changes 
+the red and green atoms (simple permutation operation). The 
+$C_2$ operation, however, performs the full rotation of 
+the local coordinate system. Try to picture the $C_2$ 
+operation - the triangle rotates around the blue bissectrice axis, thus 
+resulting in the flipped $z$ axis. The $\sigma_v$, however, 
+simply flips the $x$ axis (we keep the correct orientation
+of the coordinate system). We thus see that there is indeed a difference 
+between the 2 rotations.
+
+Okay, so we can get back to the discussion and the problem itself. 
+How can we determine the representation of the problem in question?
+This will be done via the tensor product of matrices. For that, we can 
+even create a new subsection for that.
+
+#### Tensor product
+So, in order to determine the representations, i.e. 
+$\Gamma(E)$, $\Gamma(C_3)$ etc... we need to determine 
+2 matrices for each transformation - one $3\times 3$ matrix that will 
+describe the coordinate transformations (e.g. a rotation in 2D will yield 
+a simple 2D rotation matrix) and the second $3\times 3$ 
+permutation matrix that will provide the information 
+on how the atoms are permuted as the result of the transformation. 
+So let the coordinate transformation matrix be $R$ and the 
+permutation matrix $T$; then resulting representation matrix 
+of the transformation will be given by $\Gamma(g) = T\otimes R$ yielding 
+a $9\times 9$ matrix. This does indeed make sense - there are 
+3 atoms, each having 3 coordinates, thus giving 9 "parameters".\
+For that, let's start by the simplest example - the representation of 
+the identity transformation $\Gamma(E)$.
+The permutation matrix is easily given by 
+$$
+T_E \equiv 
+\begin{pmatrix}
+1 & 0 & 0\\\\
+0 & 1 & 0 \\\\
+0 & 0 & 1 \\\\
+\end{pmatrix} 
+$$
+
+since no atoms are permuted (changing place).
+Similarly, for the coordinate matrix, it is given by 
+$$
+R_E \equiv 
+\begin{pmatrix}
+1 & 0 & 0\\\\
+0 & 1 & 0 \\\\
+0 & 0 & 1 \\\\
+\end{pmatrix} 
+$$
+
+Thus giving the representation $\Gamma(E) = \mathbb{I}_{12\times 12}$.
+The next operation to analyze is the $C_3$ operation. We want to 
+find the representation $\Gamma(C_3)$. 
+
+## Conclusion
+This article's goal was mainly to make a recap of the topic of _representation group theory 
+basic applications in (quantum) physics_. For that reason, we've tried to introduce in the most 
+_gentle and intuitive way possible_. We've introduced the notion of representation in the same way.
+All the associated notions were introduced in the same way, with examples and analogies.
 
 
 > This multiplicity notion can be interpreted as follows. The representation acts on the vector space $V$. The operations 
@@ -838,6 +983,9 @@ $$
 
 |![](/images/d4_symm.drawio.png)|
 |:--:|
+
+
+
 
 ## Examples
 We've seen that representations is a way to link the abstract notion of groups to a more common 
