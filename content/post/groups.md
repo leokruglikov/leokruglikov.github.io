@@ -48,6 +48,7 @@ A group is thus an abstract mathematical concept that is based on 2 notions: a s
 The function in the context of a group is called an operation. This operation maps two elements of a set to another 
 element of this set. Therefore, a group is a set, with a defined operation (the operation can, e.g. be addition, product, 
 composition,...) that we sometimes note as $(G, \circ)$, where $G$ is the set and the $\circ$ corresponds to the binary operation.
+The formal mathematical definition of a group is therefore:
 
 >The group $(G, \cdot)$ is said to be a group if it obeys 3 conditions:
 >- $\exists!\;e \in G: \forall g \in G, g\circ e = g = e \circ g \quad$. In other words, there exists a neutral element, such that composed with 
@@ -56,18 +57,21 @@ composition,...) that we sometimes note as $(G, \circ)$, where $G$ is the set an
 >- $\forall g ,h \in G,\; g\circ h \in G \text{ and } h \circ g \in G$. In other words, the result of the operation between any 2 elements in $G$ will give an element that also belongs to $G$.
 
 > Or more informally, we'll repeat ourselves - it's a set 
-> either finite or infinite, that is closed (remember the notion
-> of closure) under a operation, containing a identity element 
+> (either finite or infinite), that is closed (remember the notion
+> of closure) under an operation, containing an identity element  
+> (it can be shown that can only exist one identity element)
 > and an inverse for every element.
 
 This is quite an abstract concept, but also very common, when brought it with correspondance with real examples.
+Examples of group in physics involve symmetry transformations (geometrical operation of a molecule that 
+leave them invariant), Lorentz transforms, Galilean transforms, and many more.
 
 
 Apart from the exact notion of the group, there are multiple concepts related to it. For example, the notion of 
 a __conjugacy class__ of a group. 
 
-<u>Intuitively</u>, this can be though as a kind of a subset of this group containing elements, that share similar properties. 
-More precisely, mathematically, one defines the conjugacy class $C$. 
+<u>Intuitively</u>, this can be thought of as a kind of a subset of this group containing elements, that share similar properties. 
+More precisely, mathematically, one defines the conjugacy class $C$ as follows:
 
 > Two elements $x$ and $y$ belongs to the conjugacy class $C$:
 > $$ y, x\in C \iff \exists u \in G :\; u^{-1}\circ x\circ u=y$$
@@ -81,14 +85,14 @@ same class if \
 In other words, the actions $x$ and $y$ are somewhat the 
 same, in a different basis.
 
-We could try to make an analogy with matrices/transformations.That 
+We could try to make an analogy with matrices i.e. linear transformations. That 
 is, we know there exists such a concept as change of basis. This concept gives the possibility, 
 to express a matrix $A$ in two different basis. This is done via the change of base matrix $P$, namely, $A' = P^{-1}AP$. The matrix $A'$ represents
 the exact 
 same matrix as $A$, but in a different basis/from a different point of view.
 
 ## Symmetries 
-We've mentioned that the notion of groups is an abstract concept and can be associated to many, even non purely mathematical conepts. 
+We've mentioned that the notion of groups is an abstract concept and can be associated to many, even non-purely mathematical conepts. 
 For mathematics-related group examples, one can mention the
 $(\mathcal{Z}, +)$ group (group of integers with the binary
 operation of addition), the permutation group (the group 
@@ -102,13 +106,14 @@ that can form a group.
 Let's provide an example of such transformation. Consider a triangle with equal sides with edges
 denoted $A,B,C$. What are the transformations that could potentially make a group 
 of symmetries? More simply put - what 
-is the set of transformations that will leave the system invariant? 
+is the set of transformations that will leave the system invariant and make a group? 
 
 - First, we have the identity element.
 The identity operation does not change anything. 
-- The second operation is the rotation by 120 degrees. This operation 
-will map $A \mapsto B$, $B \mapsto C$ and $C\mapsto A$. However, the rotation by 120 degrees will not simply 
-permute the edges of the triangle - it will also rotate the coordinates. Indeed, one can attach a fixed coordinate 
+- The second operation is the rotation by $120$ degrees. This operation 
+will map $A \mapsto B$, $B \mapsto C$ and $C\mapsto A$. However, the rotation by $120$ degrees will not simply 
+permute the edges of the triangle - it will also rotate the coordinates, that are attached to the individual atoms. 
+Indeed, one can attach a fixed coordinate 
 frame to every edge and make sure that these coordinates do indeed rotate with respect to the "fixed coordinate 
 frame".
 - The third operation is the rotation of the triangle by -120 degrees. This would be the exact same thing as 
@@ -126,11 +131,15 @@ For different shapes and symmetries and even dimensions (one can indeed consider
 
 In order to make the notation more consise, one can make arrange 
 them in tables, often reffered to as the Cayleigh table.
-The Cayleigh table keeps track of all possible operations in a group.
+The Cayleigh table keeps track of all possible operations in a group. 
+We will create a Cayleigh for this $C_{3v}$ group later. For now, 
+we will restrict ourselves to a more simple group.
+
 For an example, one can consider a simpler group $\mathcal{Z}_2$ 
-commonly denoted as - the inversion group
+commonly named as the inversion group
 or the permutation group of order 2, or $(\{0,1\},+)$ group.
-This is nothing but the group of addition modulo-2. The operations here 
+This is nothing but the group of addition modulo $2$. The operations 
+between the two elements of the group 
 can be summarized as 
 $$
 0+0 \stackrel{\text{mod }2}{=} 0\\\\
@@ -140,15 +149,22 @@ $$
 $$
 One may easily identify the neutral element $0$ and note that
 this group is Abelian, meaning that all the elements commute.
-And the corresponding Caleigh table for the group.
-|+ |0 |1 |
-|--|--|--|
-| 0 |0 |1 |
-| 1 |1 |0 |
+And the corresponding Cayleigh table for the group.
+$$
+\def\arraystretch{1.5} \begin{array}{|c|c|c|}
+\hline
+   \circ & 0 & 1 \\\\ 
+   \hline
+   0 & 0 & 1 \\\\
+   \hline
+   1 & 1 & 0 \\\\
+   \hline
+\end{array}
+$$
 
 There are 2 conjugacy classes in this group, namely, the neutral element
-$\{0\}$ conjugacy class and $\{1\}$.
-One can create the same Cayleigh table for the mentioned $C_{2v}$ 
+$\{0\}$ conjugacy class and $\{1\}$ conjugacy class.
+One can create the same Cayleigh table for the mentioned $C_{3v}$ 
 group. These tables, are however, not very easy to manipulate for 
 large groups. Indeed, for a group of $6$ elements, the table has 
 $6\times 6 = 36$ entries in it. There are ways, however, to 
@@ -160,16 +176,17 @@ compact manner.
 Let's try to write down the Cayleigh table of the $\text{C}_{3v}$ group and analyze it using 
 the properties we've defined above. 
 So we've identified all the 6 transformatins belonging to this group. It can be shown 
-that there exists only 2 typese of such groups. That means that one can 
-come up with only two "different Cayleigh" tables for a group of order 6. 
+that there exists only 2 types of such groups. That means that one can 
+come up with only two "different Cayleigh tables" for a group of order 6. 
 Up to notation of course. 
-In order to create the table, one can write down all the transformations we've encountered before. 
-During the filling, one can ask ourselves at every intersection of the table:
+In order to create the table, one can write down all the transformations we've encountered before 
+in a table. 
+During the filling process, one can ask ourselves at each intersection of the table the following question:
 > If I first do [transformation from top] and then do [transformation from right], 
 > what would it be equivalent to?
 
 For example, let's take one trivial case: first apply $e$ - the identity operation, and the apply 
-$\sigma_A$ the mirror with respect to the bissectrice from the point $A$? It is clear the 
+$\sigma_A$ (the mirror with respect to the bissectrice from the point $A$)? It is clear the 
 result will be $\sigma_A$, since the $e$ operation doesn't do anything...
 What about a more complex case? First apply $C_1$-the rotation by $120$ degrees, and then the 
 $\sigma_A$ mirror operation? This may not be very obvious, but it is quite easy to verify 
@@ -180,7 +197,7 @@ is nothing but the $\sigma_B$ transformation. Thus, at the intersection
 of $C_1$ (top - first) and $\sigma_A$ (left - second), the resulting 
 element will be $\sigma_B$.
 By repeating this procedure $6\times 6$ times, one can obtain 
-the Cayleigh table for the $C_{3v}$ group.
+the Cayleigh table for the $C_{3v}$ group:
 
 | | | | | | | |
 |--|--|--|--|--|--|--|
@@ -203,24 +220,23 @@ either the $\sigma$ 's or $C$ 's (without counting $e$). This can be intuitively
 conjugacy classes, however, this is only a visual interpretation and is not always true and useful for larger groups.
 
 In the $C_{3v}$ symmetry group, there are 3 conjugacy classes - the trivial one $\{e\}$, the rotations class 
-$C \equiv \{C_1, C_2\}$ and the reflexions class $\sigma \equiv \{\sigma_A, \sigma_B, \sigma_C\}$.
-What this means that if we take e.g. one element from the rotation class - some $C_i \in C$, then 
+$C \equiv \{C_1, C_2\}$ and the reflexions class $\sigma \equiv \{\sigma_A, \sigma_B, \sigma_C\}$ 
+(Note: there is a special notation for groups and their elements, which, unfortunately, I do not fully follow).
+What this means is that if we take e.g. one element from the rotation class - some $C_i \in C$, then 
 no matter which transformation of group $u \in C_{3v}$ we're taking; it can be the trivial identity ($u = e$), the element 
 from the same conjugacy class ($u = C_k \in C$) or from the different conjugacy class ($u = \sigma_j \in \sigma$), 
 we will always get that the result of $u^{-1}\circ C_i \circ u$ will be in the same conjugacy class as $C_i$, namely, in the 
-conjugacy class $C \equiv \{C_1, C_2, ...\}$: $\; \; \;u^{-1}\circ C_i \circ u \in C$. \
+conjugacy class $C \equiv \{C_1, C_2, ...\}$: $\\; \\; \\; u^{-1}\circ C_i \circ u \in C$. \
 Note: finding conjugacy classes is not always straightforward. 
-They may obey the notion of "different types of transformations" 
+They may obey to the notion of "different types of transformations" 
 as in the example with $C_{3v}$ (identity, rotations, reflexions),
 but this is not always a matter of intuition. There 
 exist databases and tables with groups and their corresponding 
 partition into conjugacy classes.
 
 
-
-
 ## Representations 
-Once again, as said, the notion of groups is very broad, and can 
+Once again, the notion of groups is very broad, and can 
 be associated to many concepts. We've mentioned examples of 
 groups, like $(\mathcal{Z}_2, +)$, particular matrix group 
 like the $\text{SO}3$ group ( $3\times 3$ matrix of 
@@ -236,7 +252,7 @@ In representation theory, what we do is we associate groups to matrices.That is,
 are associated to groups, which then are associated to matrices. 
 > Thus, the idea of representation 
 > theory to associate every element of a group to a matrix of any size.
-> In addition to that, we want the association to be a homomorphism.  
+> In addition to that, we want this association to be a homomorphism.  
 
 $$
 (G, \circ) \equiv \{e, g_1, g_2, ..., g_N\} \xrightarrow{\text{Mapping (homomorphism)}}
@@ -267,15 +283,16 @@ the space of $n\times n$ invertible matrices, that act on the vector space $V$. 
 space can be arbitrary, e.g. $\mathbb{R}^n$, Hilbert space, or something else. 
 
 In other words, the representation is a homomorphism (a function) that will map every element $g\in G$ to a matrix $M_g\in \text{GL}(V)$.
-The space, to which $\Gamma$ maps the elements of $G$ is also a group (the group matrix). The values of these functions must obey the same rules as the 
+The space, to which $\Gamma$ maps the elements
+of $G$ is also a group (the group matrix). The values of these functions must obey the same rules as the 
 elements $g \in G$. Thus, when saying "representation", one can refer to the most general $\Gamma$ as the set of mappings from $g\in G$ to elements in $\text{GL}(V)$.
 
-That is, the term _representation_ itself encompasses the __mappings__ 
+Let's once again emphasize on this: the term _representation_ itself encompasses the __mappings__ 
 from elements $g\in G$ to elements in $\text{GL}(V)$, and NOT one 
 particular matrix $M_g \in \text{GL}(V)$ associated to the element 
 $g\in G$.
 
-One can consider an example of a simple parity group of order 2. 
+One can consider an example of a simple parity group of order 2, that we already discussed. 
 This group (sometimes denoted as $\mathbb{Z}_2$) has 2 elements: $\{e, p\}$ and they follow the 
 same multiplication rules as $\{1, -1\} \equiv \{e, p\}$ 
 or same additions rules as $\{0,1\}$ $\text{mod} 2$. 
@@ -283,7 +300,7 @@ One can try to create the representation $\Gamma$ for this
 group. Since the group is small, one can easily come up with a set 
 of $2$ matrices, that will obey to the same multiplication 
 rule as the group elements (see the Cayleigh table above).
-These $2$ matrices are given by:
+The $2$ possible matrices are given by:
 
 $$
 \begin{pmatrix}
@@ -298,10 +315,11 @@ $$
 \equiv p
 $$
 
-
 which indeed follow the same multiplication rules as the group $\mathbb{Z}_2 \equiv \{e, p\}$. 
-One must note that the group itself, containing $\{e,p\}$ is an abstract group, which simply has multiplication rules $e\cdot p = p\cdot e= p$; $p\cdot p = e$ and $e \cdot e = e$. 
-The group has nothing to do with matrices or even $\mathbb{Z}_2$. Indeed, the group is anything that will obey these kind of relations. The representations, however, 
+One must note that the group itself, containing $\{e,p\}$ is an abstract group, which simply 
+has multiplication rules $e\cdot p = p\cdot e= p$; $p\cdot p = e$ and $e \cdot e = e$. 
+The group has nothing to do with matrices or even $\mathbb{Z}_2$.
+Indeed, the group is anything that will obey these kind of relations. The representations, however, 
 do indeed have a relation with matrices and $\mathbb{Z}_2$. In other words, one can come up with 2 representations:
 
 $$
@@ -321,12 +339,12 @@ $$
 \end{pmatrix} 
 $$
 both representations are valid. Indeed, the two elements of $\mathbb{Z}_2$ are indeed elements of $\text{GL}(V)$ of dimension 1 and the two matrices are elements 
-of $\text{GL}(V)$ of dimension 2.
+of $\text{GL}(V)$ of dimension 2. We will then see that it is possible to come up with another one.
 
 In quantum mechanics, as said, we're working with finite groups, that are groups of symmetry. 
-The group represents the symmetry of inversion.
+This group of $2$ elements represents the symmetry of inversion.
 
-Now, one should introduce the concept of __reductibility__. 
+Now, one should introduce the very important concept of __reductibility__. 
 Consider a symmetry group $G$ that describes some system. And let $\Gamma$ be its representation. 
 Let now $\Gamma (g)$ be a representaion, that acts on the vector space $V$. One says that this 
 representation is completely reducible if there exists a non-zero subspace $W \in V$, that is invariant 
@@ -358,7 +376,7 @@ given above. This relation is called a similarity transformation. In other words
 a similarity transformation. 
 
 In representation theory, we're interested in __non-equivalent__, but __irreducible representations__. That is, in representation theory, 
-two representations, are "the same" if they are irreducible and 
+two representations, are considered to be "the same" if they are irreducible and 
 possibly equivalent.
 One should, however, note another fact concerning the reducible representations. The general matrix form of the irreducible 
 representation is instead given by 
@@ -380,19 +398,22 @@ $$
 $$
 
 instead of simply $\Gamma(g) = \bigoplus _{a} \Gamma(g)^{(a)}$. That is, one adds some degenerescence to a given 
-element of the block-representation $\Gamma(g)^{(a)}$. 
+element of the block-representation $\Gamma(g)^{(a)}$. Meaning that some of the irreducible representations 
+are encountered more than once in the final, irreducible representation.
 
 This is a very important formula that describes 
-well the notion of (ir)-reducible representations.
+the notion of (ir)-reducible representations.
 
 ### Why do we need it? Recap up to now
-- So for now what we understand is that there exists some kind of spatial structure 
+- So, for now, what we understand is that there exists some kind of spatial structure 
 (a triangle, cube, molecule, etc...) that has some symmetry associated to it. What 
 symmetry means is that one can apply one of the symmetrical transformation, and we won't 
 be able to tell the difference between the systems before and after transformations.
+This is called "invariance under transformations" or simply "symmetries".
 
 - These symmetries obey to some mathematical properties between themselves. These 
-mathematical properties are called a group.
+mathematical properties are called a group. In other words, the geometrical 
+transformations may obey relations, that are nothing but groups. 
 
 - Instead of working with the group, which can be characterized using a Cayleigh table 
 (containing all possible relations in the group), one can characterize the group 
@@ -520,19 +541,24 @@ representations
 over the space $V_a$, $V_b$ of dimensions $n_a$ and $n_b$, of
 the group $G$ of order $N$. Then, the great orthogonality 
 theorem states: 
+
 $$
-\sum_{g\in G}\frac{n_a}{N} [\Gamma_a(g)]^*_{i,k}[\Gamma_b(g)]_{m,n} =\delta_{a,b}\delta_{i,m}\delta_{k,n}
+\sum_{g \in G}\frac{n_a}{N} [\Gamma_a(g)]_{i,k}^{*} [\Gamma_b (g)] _{m,n} = \delta _{a,b} \delta _{i,m} \delta _{k,n}
 $$
-Where the sum is performed over the group elements $g\in G$
-and $[\Gamma_b(g)]_{m,n}$ the element at $(m,n)$ of the 
-matrix $\Gamma_{a}$ . 
+
+Where the sum is performed over the group elements $g\in G$.
 This can be easily rewritten as 
 
 $$
-\sum_{g\in G}\sqrt{\frac{n_a}{N}} [\Gamma_a(g)]^*_{i,k} \sqrt{\frac{n_b}{N}}[\Gamma_b(g)]_{m,n} =\delta_{a,b}\delta_{i,m}\delta_{k,n}
+\sum_{g \in G} \sqrt{\frac{n_a}{N}} [\Gamma_a (g)]_{i,k}^{*} \sqrt{\frac{n_b}{N}} [\Gamma_b (g)] _{m,n} = \delta _{a,b} \delta _{i,m} \delta _{k,n}
 $$
+
 and identifying the mentioned elements of the vector space 
-$\ket{a,k,j} \equiv \sqrt{\frac{n_a}{N}} [\Gamma_a(g)]^*_{j,k} $.
+
+$$
+\ket{a,k,j} \equiv \sqrt{\frac{n_a}{N}} [\Gamma_a (g)]_{j,k}
+$$
+
 The basis ortogonality relation can be identified as 
 $\braket{b,i,k|a,m,n}=\delta_{a,b}\delta_{i,m}\delta_{k,n}$.
 
@@ -954,9 +980,107 @@ R_E \equiv
 \end{pmatrix} 
 $$
 
-Thus giving the representation $\Gamma(E) = \mathbb{I}_{12\times 12}$.
+Thus giving the representation $\Gamma(E) = I_{9\times 9}$.
 The next operation to analyze is the $C_3$ operation. We want to 
-find the representation $\Gamma(C_3)$. 
+find the representation $\Gamma(C_3)$. What will be its permutation 
+matrix? So, one of the elements of the $C_3$ will 
+perform a rotation by $120^{\circ}$. This will 
+make the permutation $R\mapsto B$, $B \mapsto G$ and $G\mapsto R$
+(where the letters represnt the colors of the atoms on the image).
+Therefore, the resulting permutation matrix will be given by 
+$$
+P_{C_3} \equiv 
+\begin{pmatrix}
+0 & 0 & 1\\\\
+1 & 0 & 0 \\\\
+0 & 1 & 0 \\\\
+\end{pmatrix} 
+$$
+What about the coordinate transformation matrix for the $C_3$ 
+transformation? For that we ask ourselves - how do the 
+transformations change the coordinates? The $z$ 
+coordinate does not change at all, and the rest is 
+changed as a usual 2D rotation, which is given by 
+$$
+R_{C_3} \equiv 
+\begin{pmatrix}
+\cos(\theta) & -\sin(\theta) & 0\\\\
+\sin(\theta) & \cos(\theta) & 0 \\\\
+0 & 0 & 1 \\\\
+\end{pmatrix} 
+$$
+where the angle $\theta = 120^{\circ}$, yielding the rotation 
+matrix 
+$$
+R_{C_3} \equiv 
+\begin{pmatrix}
+-\frac{1}{2} & -\frac{\sqrt{3}}{2} & 0\\\\
+\frac{\sqrt{3}}{2} & -\frac{1}{2} & 0 \\\\
+0 & 0 & 1 \\\\
+\end{pmatrix} 
+$$
+The resulting representation matrix of the operation $C_3$ 
+is thus the tensor product of $P_{C_3}$ and $R_{C_3}$.
+We can proceed further for this procedure for other operations 
+in the list. Let's quickly go over other example of constructing 
+matrices. \
+The $C_2$ rotation is the rotation over the bissectrice axis.
+Let's, for example, take the blue axis. Then, the rotation 
+will be performed around the $y$ axis, meaning that the coordinate 
+transformation matrix will be in the form of 
+$$
+\begin{pmatrix}
+\cos(\theta) &0 & \sin(\theta) \\\\
+0 & 1 & 0 \\\\
+-\sin(\theta) &0 & \cos(\theta)  \\\\
+\end{pmatrix} 
+$$
+with $\theta = 180^{\circ}$ yielding the 
+matrix 
+
+$$
+\begin{pmatrix}
+-1 &0 & 0 \\\\
+0 & 1 & 0 \\\\
+0 &0 & -1 \\\\
+\end{pmatrix} 
+$$
+
+and the permutations are given by $R\mapsto G$, $G\mapsto R$ and 
+$B \mapsto B$.
+
+We must recall, that we're mainly interested in characters, rather than the full set 
+of all matrices (the full representation).
+
+We will not write down all the permutations and coordinate transformation matrices.
+We've written down some of them - but it is quite straightforward to go on for 
+other matrices. 
+We will state the resulting character table:
+$$
+\def\arraystretch{1.5} \begin{array}{|c|c|c|c|c|c|c|}
+\hline
+   \chi & E & 2C_3 & 3C_2 & \sigma_h & 2S_3 & 3\sigma_v \\\\ 
+   \hline
+   \Gamma_{P} & 3 & 0 & 1&3 &0 &1 \\\\
+   \hline
+   \Gamma_{R} & 3 & 0 &-1 &1 &-2 &1\\\\
+   \hline
+   \Gamma & 9 & 0 & -1 & 3 & 0 & 1\\\\
+   \hline
+\end{array}
+$$
+Finally, we can now use the characters of our representation, that we computed 
+using the tensor product of permutation matrix and coordinate transformation matrix. 
+We can thus find the desired multiplicities using the already very familiar formula 
+$$
+b_a = \frac{1}{N} \sum_{\mu}^{N_c}n_{\mu} \chi_a^*(C_{\mu}) \chi(C_{\mu})
+$$
+where $\chi(C_{\mu})$ - the characters obtained via our procedure (the first table above).
+The $n_\mu$ - the number of elements inside this conjugacy class.
+Finally, the $\chi_{a}(C_{\mu})$ - the character of the irreducible representation 
+$a$, which is found in the character table of the $D_{3v}$ group.
+
+
 
 ## Conclusion
 This article's goal was mainly to make a recap of the topic of _representation group theory 
@@ -965,37 +1089,3 @@ _gentle and intuitive way possible_. We've introduced the notion of representati
 All the associated notions were introduced in the same way, with examples and analogies.
 
 
-> This multiplicity notion can be interpreted as follows. The representation acts on the vector space $V$. The operations 
-> that are 
-> represented on $V$ are related to the group symmetries. That is, in the group, there are elements that get transformed in the same 
-> manner. That is, suppose we consider the group $D_4$, which is the group of symmetric transformations of a square (e.g. of points 
-> located at the edges of a squares), which vertices are numbered from the top LHS in the clockwise direction (see the figure). 
-> Then, one considers the element of the group that transforms the square by flipping it along the diagonal in red. Then, clearly, the 
-> position 1 \& 3 are not changed. This means that the elements $1$ and $3$ are transformed in the same manner. That is, they are 
-> _not_ transformed (or transformed as identity).
->
-> In this example, we've considered the group $G \equiv D_4$, and the space, to which it gets mapped via the representation $\Gamma$ is 
-> the position space. That is, we map one transformation of the group to the space of positions (e.g. a rotation in the group space corresponds to the cartesian coordinates, described by e.g. the cartesian $(x,y,z)$ ). Thus, the diagonal transformation does not change the position 
-> of the points $1$ and $4$.
-> 
-> This invariance corresponds to the degeneracy of the group representation that we've mentioned in the decomposition of the 
-> irreducible representation.
-
-|![](/images/d4_symm.drawio.png)|
-|:--:|
-
-
-
-
-## Examples
-We've seen that representations is a way to link the abstract notion of groups to a more common 
-notion of matrices. Now, one will try to link the notion we've discussed. That is, lets consider 
-the simplest parity group.
-### Parity group
-Consider a molecule made of 2 atoms tighten with 1 bond. One denotes the atom on the left as atom $A$ and the atom on the 
-right as atom $B$. Using the concept of particle indisinguishability, if we exchange $A$ and $B$, we won't be able 
-to tell the difference. Therefore, one can say that there is a symmetry of the given system. Indeed, we can make the transformation 
-$A \mapsto B$ and $B \mapsto A$. Then, as mentioned, one can come with the representation 
-
-[privesti primer sejchas, i jeshe pozhe o tom, chtom mozhno sdelatj neskoljko representations. Naprimer 
-[0,1; 1,0] dlja nechetnoj funkcii, ili naprimer [-1, 0; 0, 1]. Rassmotretj eti dve representations.]
