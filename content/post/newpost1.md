@@ -14,5 +14,3 @@ approach to explaining algorithms, from what is available online. The sources, a
 are all listed in the document. Mainly coming from Wikipedia and Qiskit.
 
 {{<embed-pdf url="learn_qc.pdf" hideLoader="true">}}
-
-
