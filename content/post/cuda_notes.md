@@ -274,7 +274,7 @@ part of the execution scheduling model.
 
 ### The full pdf
 
-{{<embed-pdf url="cuda_recap.pdf" hideLoader="true">}}
+{{<embed-pdf url="cuda_recap.pdf" hideLoader="true" uniqueID="pdfcuda">}}
 
 
 > [10] Cooperative groups: Flexible cuda thread programming, Aug 2020. URL: [https://developer.nvidia.com/blog/cooperative-groups/](https://developer.nvidia.com/blog/cooperative-groups/).

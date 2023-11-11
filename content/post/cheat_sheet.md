@@ -8,6 +8,45 @@ markup: "mmark"
 showReadingTime: true
 toc: true
 ---
+## Quantum mechanics postulates 
+Quantum mechanics is sometimes not intuitive. For that, states postulates that serve as axioms for quantum mechanics.
+### Hilbert space 
+A quantum state, describing a system is denoted with a ket and lives in it's state space, which is a Hilbert space.
+The latter can be either finite or infinite. One denotes
+
+$$
+\ket{\psi} \in \mathcal{H} 
+$$
+The state can be sometimes represented as a member of $\mathbb{C}^d$, i.e. a column vector.
+
+### Measurements
+In quantum mechanics, a measurement is represented by an operator. 
+The measurement operator is must be Hermitian. Consider an operator
+$\hat{A}$. Since it is hermitian, we can decompose it in eigenkets $\ket{a_i}$ and eigenvalues $a_i$.
+That is, 
+$$
+\widehat{A} = \sum_i a_i\ket{a_i}\bra{a_i}
+$$
+Note that this is the case for a discrete operator. The case of a continious spectrum will be mentioned further.\
+In addition to that, one can decompose any state $\ket{\psi}$ into the eigenkets. 
+That is, 
+$$
+\ket{\psi} = \sum_i c_i \ket{a_i}
+$$
+The main postulate of the quantum measurement states that after the measurement, the state collapses 
+to one of the eigenvalue of the $\ket{a_i}$. This, in addition happens with probability $|\langle \psi | a_i \rangle|^2$. \
+**Note**: The measurement postulate will be elaborated more.
+
+## Measurements
+The quantum measurement operators are given by a set $\hat{M}_i$, which obey $\sum_i \hat{M}^{\dag}_i \hat{M}_i = \mathbb{I}$
+Suppose we're measuring $\hat{M}_i$ on $\ket{\psi}$. Then, the state $\ket{\psi}$ will collapse into a new state.
+The collapse/transformation is given by 
+$$
+\ket{\psi} \mapsto \frac{\hat{M}_k\ket{\psi}}{\sqrt{p_k}} \equiv \ket{\psi_k}
+$$
+Where $p_k$ is the probability that the state $\ket{\psi}$ collapses to the state related to the $\hat{M}_k$.
+This is given by 
+$p_k = \langle \psi | \hat{M}_k^{\dag} \hat{M}_k | \psi \rangle$
 
 ## General properties of commutators
 Let $\hat{A}$, $\hat{B}$ and $\hat{C}$ - operators. Then, 
@@ -40,6 +79,27 @@ $$ [\widehat{\vec{x}}_k,[\widehat{\vec{x}}_i, \widehat{\vec{p}}_j]] =
 $$ 
 = \widehat{\vec{x}}_ki\hbar\delta _{i,j} - i\hbar\delta _{i,j}\widehat{\vec{x}}_k = 0 $$
  $$ \qquad \qquad, \text{since the operator } \delta _{i,j} \text{ commutes with the rest} $$
+
+## Harmonic oscillator
+The harmonic oscillator is a classical yet important problem in quantum mechanics. 
+The hamiltonian for the harmonic oscillator is given by 
+$$
+\mathcal{H} = \frac{\hat{p}^2}{2m} + \frac{1}{2}m\omega^2\hat{x}^2
+$$
+One defines the creation and anihilation operators respectively
+$$
+\hat{a} = \frac{1}{\sqrt{2}}\Biggl(\sqrt{\frac{m\omega}{\hbar}}\hat{x} + i\frac{1}{\sqrt{m\omega \hbar}} \Biggr) \\\\
+\hat{a}^{\dag} = \frac{1}{\sqrt{2}}\Biggl(\sqrt{\frac{m\omega}{\hbar}}\hat{x} - i\frac{1}{\sqrt{m\omega \hbar}} \Biggr) 
+$$
+They obey the commutation relation 
+$$
+[\hat{a}, \hat{a}^{\dag}] = 1
+$$
+And the hamiltonian $\mathcal{H}$ can be written using those operators:
+$$
+\mathcal{H} = \hbar \omega \biggl( \hat{a}^{\dag} \hat{a} + \frac{1}{2} \biggr)
+$$
+
 
 ## Momentum operator
 The angular operator may refer to different notions, since it is quite a general formulation. Namely, this may refer to 
@@ -75,7 +135,7 @@ $$
 In addition, one can define for convenience other operators - __creation__ and __anihilation__ operators. One defines 
 $$
 \widehat{\jmath}_+  = \widehat{\jmath}_x + i\widehat{\jmath}_y \\\\
-\widehat{\jmath}_-  = \widehat{\jmath}_x - i\widehat{\jmath}_y
+\widehat{\jmath} _- = \widehat{\jmath}_x - i\widehat{\jmath}_y
 $$
 
 There are noticable commutation relations involving the $\widehat{\jmath_+}$ and $\widehat{\jmath_-}$ ladder operators:
@@ -111,7 +171,22 @@ This notion is reffered to as the _angular momenta addition_ $\widehat{\vec{J}} 
 
 Therefore, for the specific cases, of $L$, $S$ and $J$, one can write 
 $$
-\widehat{\vec{L}}^2 \ket{lm_l} = l(l+1) \ket{lm_l} \qquad \& \qquad \widehat{L}\ket{lm_l} = m_l\ket{lm_l} \\
-\widehat{\vec{S}}^2 \ket{sm_s} = s(s+1) \ket{sm_s} \qquad \& \qquad \widehat{S}\ket{sm_s} = m_s\ket{sm_s} \\
-\widehat{\vec{J}}^2 \ket{jm_j} = j(j+1) \ket{jm_j} \qquad \& \qquad \widehat{J}\ket{jm_j} = m_j\ket{jm_j} 
+\widehat{\vec{L}}^2 \ket{lm_l} = l(l+1) \ket{lm_l} \qquad \\& \qquad \widehat{L}\ket{lm_l} = m_l\ket{lm_l} \\\\
+\widehat{\vec{S}}^2 \ket{sm_s} = s(s+1) \ket{sm_s} \qquad \\& \qquad \widehat{S}\ket{sm_s} = m_s\ket{sm_s} \\\\
+\widehat{\vec{J}}^2 \ket{jm_j} = j(j+1) \ket{jm_j} \qquad \\& \qquad \widehat{J}\ket{jm_j} = m_j\ket{jm_j} 
 $$
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

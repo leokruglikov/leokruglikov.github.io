@@ -1,0 +1,312 @@
+%% Requires compilation with XeLaTeX or LuaLaTeX
+\documentclass[10pt,xcolor={table,dvipsnames},t]{beamer}
+\usetheme{metropolis}
+\usepackage{amsmath}
+\usepackage{nicefrac}
+\usepackage{amssymb}
+%\usepackage{enumitem}
+\usepackage{braket}
+
+\title{Open Quantum System}
+\subtitle{Lectures: \\ 
+  \footnotesize
+  \begin{itemize}
+      \setlength\itemsep{-0.5em}
+    \item Daniel Manzano, A short introduction to the Lindblad master equation (\textit{all})
+    \item Breuer and Petruccione, The Theory of Open Quantum Systems (\textit{ch. 3 - 4.3})
+    \item Daniel A. Lidar, Notes on the Theory of Open Quantum Systems (\textit{up to ch. 12})
+  \end{itemize}
+}
+\newcommand{\dt}{\frac{d}{dt}}
+\newcommand{\Hint}{H_{\text{int}}}
+\newcommand{\outerprod}[2]{\ket{#1}\!\!\bra{#2}}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+
+\begin{frame}{Recap}
+  Last time: derivation of the \textbf{Lindblad} equation\\
+  \begin{itemize}
+    \item<1-> General form: 
+  $$
+  \dt \rho(t)  = -i[H, \rho(t)] + \sum_{i,j=1}^{d^2-1}g_{i,j}\biggl( F_i\rho(t)F_j^\dag -\frac{1}{2}\bigr\{ F_j^\dag F_i, \rho(t) \bigl\} \biggr)
+  $$
+
+\item<2-> Since $g_{i,j}$ - hermitian, can be diagonalized with real eigenvalues: $g=U\Lambda U^\dag$, with $\Lambda = \text{Diag}(\gamma_i)$.
+  and $L_k = \sum_i U_{i,k} F_i$. Giving the diagonal form
+  \begin{equation}
+  \dt \rho(t) = -i[H, \rho(t)]+\sum_{k=1}^{N^2-1} \gamma_k \biggl( L_k\rho L_k^\dag - \frac{1}{2}\bigl\{ L^\dag_k L_k, \rho(t) \bigr\} \biggr)
+  \label{eq:master_equation}
+  \end{equation}
+\item<3-> Also, in the Heisenberg picture, for an operator $A(t)$
+  \begin{equation}
+    \dt A = \mathcal{L}^\dag A = 
+    i[H,A]+\sum_k \gamma_k \biggl( L_k^\dag A L_k -\frac{1}{2}\bigl\{ L^\dag_k L_k, A \bigr\} \biggr)
+  \end{equation}
+
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Approximations: weak coupling}
+  \begin{itemize}
+    \item<1-> Hamiltonian for system and bath
+      \begin{equation}
+        H_{\text{tot}} \equiv H = H_{S}\otimes \mathbb{I} + \mathbb{I}\otimes H_B + \alpha \Hint
+    \end{equation}
+  \item<2-> Back from the von-Neumann equation (in the Dirac's picture):
+    \begin{equation}
+      \begin{split}
+        \rho(t)_\text{tot} &= \rho(0)_\text{tot} -i\alpha \int_0^tds[\Hint(s), \rho_\text{tot}(t)] \rightarrow \\
+        \dt \rho(t)_\text{tot} &= \rho(0)_\text{tot} -i\alpha \int_0^tds[\Hint(s), \rho_\text{tot}(t)]\\
+                           &- \alpha^2 \int_0^t [\Hint(s),[\Hint(s), \rho_\text{tot}(t)]] + \mathcal{O}(\alpha^3) \\
+      \end{split}
+    \end{equation}
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}{Approximations: weak coupling}
+  \begin{itemize}
+    \item<1-> Explicitly taking the trace $\text{Tr}_B$, for $\rho_S \equiv \rho$, on gets
+      \begin{equation}
+        \dt \rho(t) = - \alpha^2 \int_0^t \text{Tr}_B \Bigl[[\Hint(s),[\Hint(s), \rho(t)\otimes \rho_B(t)]] \Bigr]
+      \end{equation}
+\item<2-> Weak coupling limit: 
+  \begin{itemize}
+    \item<2-> $\alpha \ll 1$
+    \item<2-> Relaxation time of bath vs relaxation time of system 
+      $\tau_{B,\text{corr.}}, \tau_{B, \text{relax.}} \ll \tau_{\text{sys.}}$ with 
+      $\tau_{\text{sys.}} \sim |\omega - \omega'|^{-1}$ with $\omega$ - proper energy.
+  \end{itemize}
+\item<3-> Corollary: $\rho_{\text{tot}}(t) = \rho(t)\otimes \rho_B(t) \simeq \rho(t) \otimes \rho_B(0)$ giving 
+      \begin{equation}
+        \dt \rho(t) = - \alpha^2 \int_0^t \text{Tr}_B \Bigl[[\Hint(s),[\Hint(s), \rho(t)\otimes \rho_B(0)]] \Bigr]
+      \end{equation}
+      but non-Markovian, since dependence in time $\tau$ - $0<\tau<t$.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Approximations: weak coupling}
+  \begin{itemize}
+    \item<1-> Considering weak coupling, one takes:
+      \begin{itemize}
+        \item<1-> $s\mapsto s-t$, since interaction is neglected for a large $\Delta t$.
+    \item<1-> Integral boundary $t\rightarrow \infty$.
+    \end{itemize}
+  \item<2-> Yielding the Redfield equation:
+      \begin{equation}
+        \dt \rho(t) = - \alpha^2 \int_0^\infty \text{Tr}_B \Bigl[[\Hint(s),[\Hint(s-t), \rho(t)\otimes \rho_B(0)]] \Bigr]
+      \end{equation}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Rotating wave approximation}
+  \begin{itemize}
+    \item<1-> The Redfield eq. does not define the positivity of the map.
+    \item<2-> Decompose the interaction term: $\Hint = \sum_k S_k \otimes B_k$, with $S_k$ related to 
+      the system and $B_k$ - to the bath.
+    \item<3-> Expansion of $S_k$ in the form 
+      \begin{equation}
+        \begin{split}
+          S_k = \sum_\omega S_k(\omega) \quad \text{ ,with } S_k(\omega) = 
+          \sum_{\substack{\varepsilon - \varepsilon'=\\ =\omega \in \sigma(H_S)}}\Pi_\varepsilon S_k \Pi_{\varepsilon'} 
+      \end{split}
+      \end{equation}
+      with $\Pi_\epsilon$ the projection operators related to the proper energies $\varepsilon$ of the system.
+    \item<4-> Properties of the defined operators: 
+      \begin{itemize}
+        \item<4-> $[H_S, S_k(\omega)]=-\omega S_k(\omega)$ \quad 
+          and \quad $[H_S, S_k^\dag(\omega)]= +\omega S_k(\omega)$
+        \item<4-> $[H_S, S_k^\dag(\omega) S_l(\omega)]=0$
+        \item<4-> $S_k^\dag(\omega)=S_k(-\omega)$
+        \item<4->
+          \begin{equation}
+            \sum_\omega S_k(\omega) = \sum_\omega S^\dag_k(\omega) = S_k
+          \end{equation}
+      \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Rotating wave approximation}
+  \begin{itemize}
+    \item<1-> The decomposition of $\Hint$ and the interaction picture gives 
+    \begin{equation}
+      \begin{split}
+        \Hint &= \sum_{k, \omega} S_k(\omega)\otimes E_k \rightarrow \\
+        \Hint(t) &= \sum_{k,\omega}e^{-i\omega t}S_k(\omega)\otimes E_k(t)
+      \end{split}
+    \end{equation}
+    \item<2-> Expanding the commutators, one gets 
+      \begin{equation}
+        \begin{split}
+          \dt \rho(t) = \sum_{\substack{\omega, \omega'\\ k,l}}\biggl(&
+          e^{i(\omega'-\omega)t}\Gamma_{kl}(\omega)[S_l(\omega)\rho(t),S^\dag_k(\omega')]+\\
+                                                               &+ e^{i(\omega-\omega')t} \Gamma^*_{kl}(\omega')
+                                                             [S_l(\omega),\rho(t)S_k^\dag(\omega')] \biggr)
+        \end{split}
+      \end{equation}
+    \item<2-> With defining 
+      \begin{equation}
+        \Gamma_{kl}(\omega) \equiv \int_0^\infty ds\; e^{i\omega s} \text{Tr}_B
+        [B_k^\dag(t)\otimes B_l(t-s)\rho_B(0)]
+      \end{equation}
+    \item<3-> Rotating wave approximation: only resonant terms $\omega=\omega'$ are kept. 
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Rotating wave approximation}
+  \begin{itemize}
+    \item<1-> One obtains 
+      \begin{equation}
+        \begin{split}
+        \dt \rho(t) =  \sum_\omega \sum_{k,l}\biggl( \Gamma_{k,l}(\omega)[S_l(\omega)\rho(t),S_k^\dag(\omega)]+\\
+        \Gamma_{lk}^*(\omega)[S_l(\omega),\rho(t)S_k^\dag(\omega)] \biggr)
+        \end{split}
+      \end{equation}
+    \item<2-> One can rewrite the term $\Gamma_{kl}$ into the hermitian and non-hermitian parts:
+      \begin{equation}
+        \begin{split}
+          \Gamma_{kl}(\omega) = \frac{1}{2} \gamma_{kl}(\omega) + i\pi_{kl}, \quad 
+           &\pi_{kl}(\omega) \equiv \frac{1}{2i}(\Gamma_{kl}(\omega)-\Gamma_{kl}^*(\omega))\\
+           &\gamma_{kl}(\omega) \equiv \Gamma_{kl}(\omega)+\Gamma_{kl}^*(\omega)= \\
+          =& \int_{-\infty}^{\infty}ds\;e^{i\omega s}\text{Tr}_B[S_k^\dag(s)S_l(0)\rho_B(0)]
+        \end{split}
+      \end{equation}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Rotating wave approximation}
+  \begin{itemize}
+    \item<1-> Now, back to the Schrodinger picture, one gets
+      \begin{equation}
+        \begin{split}
+          \dt\rho(t) = &-i[H+H_{\text{LS}}, \rho(t)] + 
+          \sum_{\substack{\omega \\ k,l}}\gamma_{kl}(\omega) \cdot \\
+                       &\cdot \biggl( S_l(\omega)\rho(t)S_k^\dag(\omega) - \frac{1}{2}\biggl\{ S_k(\omega)^\dag
+                       S_l(\omega)^\dag,\rho(t) \biggr\} \biggr)
+        \end{split}
+      \end{equation}
+    \item<2-> The additional term $H_\text{LS}$ - the Lamb Shift Hamiltonian, defined by 
+      \begin{equation}
+        H_{\text{LS}} = \sum_{\substack{\omega, \\k,l}}\pi_{kl}(\omega)S_k^\dag(\omega)S_l(\omega)
+      \end{equation}
+    \item<2-> With recalling the terms $S_k$ - the basis of the decomposition of the interaction Hamiltonian 
+      $\Hint = \sum_k S_k \otimes B_k$ and $S_k(\omega) = \sum_{\varepsilon'-\varepsilon}
+      \Pi_{\varepsilon} S_k \Pi_{\varepsilon'}$.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Rotating wave approximation}
+  \begin{itemize}
+    \item<1-> Using the diagonalization of the equation, one gets the LGKS equation with the Lamb Shift 
+      Hamiltonian and the jump operators.
+      \begin{equation}
+        \begin{split}
+          \dt \rho(t) =& -i[H+H_\text{LS},\rho(t)] + \\
+          \sum_{i,\omega}\biggl(
+                       &L_i(\omega)\rho(t)L_i^\dag(\omega) - \frac{1}{2}\bigl\{ L_i^\dag L_i(\omega),\rho(t) \bigr\}
+          \biggr)
+                       =\mathcal{L}\rho(t)
+        \end{split}
+      \end{equation}
+  \end{itemize}
+\end{frame}
+\subsection{Summary}
+
+
+\begin{frame}{Summary}
+  \begin{itemize}
+    \item[\rightarrow]<1-> Von Neumann equation for density matrix
+    \item[\rightarrow]<2-> Interaction picture \& application of the Von Neumann $\rightarrow$ Redfield equation
+    \item[\rightarrow]<3-> Decomposition of the interaction Hamiltonian $\Hint$ into the basis $S_k\otimes B_k$
+    \item[\rightarrow]<4-> Decomposition of the basis elements via $S_k(\omega)$, defined using the \underline{spectra of the system $H_S$}.
+    \item[\rightarrow]<5-> Substituting into the Redfield, identifying elements, separating into Hermitian/non-Hermitian and diagonalizing. 
+      Obtaining the Lindblad equation 
+      with the Lamb Shift contribution, which is dependent on the \underline{spectrum of the system $H_S$.} 
+    \item[]<1->\vspace{0.2cm}
+      \hrule 
+    \item[]<5-> Other special cases: Optical, High temperature, Brownian motion, Nonlinear mean field, Nonlinear mean field laser master 
+        equations.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Exact example - spin-boson}
+  \begin{itemize}
+    \item<1-> Spin coupled to a boson bath. Hamiltonian given by 
+      \begin{equation}
+        \begin{split}
+          H &= H_S + H_B + H_I = H_0 + \Hint = \\
+            &= \frac{\omega_0}{2}\sigma_z + \sum_k \omega_k b_k^\dag b_k + \sum_k \sigma_z \otimes \bigl(\lambda_k b_k^\dag + \lambda_k^* b_k)
+        \end{split}
+      \end{equation}
+      with $\omega_k$ - mode frequencies of the bosonic bath, $g_k$ - the coupling constants to the bosonic bath, 
+      $b$ - the bosonic creation and anihilation operators obeying 
+      $[b_i,b_j^\dag] = \delta_{i,j}$.
+      $\sigma_z = \outerprod{0}{0} - \outerprod{1}{1}$ - the Pauli $z$ operator.
+    \item<2-> The interaction Hamiltonian evolution (in the Dirac's picture)
+      \begin{equation}
+        \begin{split}
+          \Hint = \sum_k \sigma_z \otimes \bigl( \lambda_k b_k^\dag e^{i\omega_k t} + \lambda_k^* b_k e^{-i\omega_k t} \bigr)
+        \end{split}
+      \end{equation}
+      \item<3-> The former obeys the commutations:
+        \begin{equation}
+          \begin{split}
+            [\Hint(t), \Hint(s)] &= -2i\sum_k \sin(\omega(t-s)) = -2i\phi(t-s) \\ 
+            &= \quad [\Hint(t),[\Hint(s),\Hint(r)]] = 0
+          \end{split}
+        \end{equation}
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Exact example - spin-boson}
+  \begin{itemize}
+    \item<1-> \textbf{Goal - find the system's density matrix}
+      \begin{equation}
+        \rho_S(t) = \text{Tr}_B [U(t)\rho_S(0)\otimes \rho_B(0)U^\dag(t)]
+      \end{equation}
+    \item<2-> With the evolution operator $U(t)=T_+e^{-i\int_0^t H(s)ds}$
+    \item<3-> Commutations - $[H(s), H(r)]\neq 0$ and $[[H(t),H(r)],H(s)] = 0$, thus 
+      $e^{A+B}=e^{A}e^{B}e^{-\frac{[A,B]}{2}}$ - valid.
+    \item<3-> After some algebra, one can write 
+      \begin{equation}
+        U(t) = e^{\frac{1}{2} \int_0^t ds \int_0^s dr[H(r),H(s)]}e^{-i\int_0^tH(s)ds}
+      \end{equation}
+    \item<4-> The integrations yield 
+      \begin{equation}
+        \begin{split}
+          -i\int_0^tH(s)ds = \sigma_z\otimes &\sum_k\bigl( \alpha_k^*a_k - \alpha_k a_k^\dag \bigr)\\
+                                             &\text{with }\; \alpha_k(t)=\frac{\lambda_k^*(e^{i\omega_kt})-1}{\omega_k}
+        \end{split}
+      \end{equation}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Exact example - spin-boson}
+  \begin{itemize}
+    \item<1-> For the integral of the commutator - 
+      \begin{equation}
+        \sigma_z^2\otimes \sum_k \text{Im}\biggl[\frac{1-e^{i\omega_k t}+i\omega_k t}{\omega_k^2} \biggr]
+      \end{equation}
+    \item<2-> After some tedious simplifications, and by defining 
+      \begin{equation}
+        f(t) \equiv \sum_k \text{Im}\biggl[ |\lambda_k|^2 \frac{e^{i\omega_kt}-i\omega_k t -1}{\omega_k^2} 
+        \biggr]
+      \end{equation}
+      one can write the evolution operator 
+      \begin{equation}
+        U(t)=e^{if(t)}\prod_k \exp\biggl(\sigma_z\otimes \bigl[ \alpha_k(t)a_k - 
+        \alpha_k(t)^*a_k^\dag \bigr] \biggr)
+      \end{equation}
+  \end{itemize}
+\end{frame}
+
+\smallframetitle
+
+
+\end{document}
