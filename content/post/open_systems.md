@@ -1,7 +1,7 @@
 ---
 title: "Open quantum systems - an overview"
 date: "2023-05-17T22:33:44+01:00"
-draft: true
+draft: false
 tags: ["physics"]
 katex: true
 markup: "mmark" 
